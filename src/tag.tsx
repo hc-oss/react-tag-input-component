@@ -30,12 +30,19 @@ const tagStyles = css({
 });
 
 export default function Tag({ text, remove }: TagProps) {
-  const handleOnRemove = () => remove(text);
+  const handleOnRemove = e => {
+    e.stopPropagation();
+    remove(text);
+  };
 
   return (
     <span className={cc("rti--tag", tagStyles)}>
       <span>{text}</span>
-      <button onClick={handleOnRemove} aria-label={`remove ${text}`}>
+      <button
+        type="button"
+        onClick={handleOnRemove}
+        aria-label={`remove ${text}`}
+      >
         &#10005;
       </button>
     </span>
