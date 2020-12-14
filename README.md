@@ -28,7 +28,7 @@ yarn add react-tag-input-component # yarn
 
 ```tsx
 import React, { useState } from "react";
-import TagsInput from "react-tag-input-component";
+import { TagsInput } from "react-tag-input-component";
 
 const Example = () => {
   const [selected, setSelected] = useState(["papaya"]);
