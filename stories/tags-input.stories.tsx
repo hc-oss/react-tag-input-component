@@ -16,7 +16,6 @@ export const Default = () => {
       <TagsInput
         value={selected}
         onChange={setSelected}
-        seprators={["Enter", ","]}
         name="fruits"
         placeHolder="enter fruits"
       />

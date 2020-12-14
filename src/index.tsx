@@ -83,7 +83,7 @@ export const TagsInput = ({
       setTags(tags.slice(0, -1));
     }
 
-    if (e.key && (seprators || defaultSeprators).includes(e.key)) {
+    if (text && (seprators || defaultSeprators).includes(e.key)) {
       if (tags.includes(text)) {
         onExisting && onExisting(text);
         return;

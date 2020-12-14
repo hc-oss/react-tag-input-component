@@ -13,6 +13,7 @@ also see [multi select component](https://github.com/harshzalavadiya/react-multi
 - 🍃 Lightweight (2KB including styles 😎)
 - 💅 Themeable
 - ✌ Written w/ TypeScript
+- 🗑️ Use Backspace to remove last tag
 
 ## 🔧 Installation
 
@@ -39,7 +40,6 @@ const Example = () => {
       <TagsInput
         value={selected}
         onChange={setSelected}
-        seprators={["Enter", ","]}
         name="fruits"
         placeHolder="enter fruits"
       />
@@ -53,16 +53,16 @@ export default Example;
 
 ## 👀 Props
 
-| Prop          | Description                                  | Type                    | Default     |
-| ------------- | -------------------------------------------- | ----------------------- | ----------- |
-| `name`        | value for name of input                      | `string`                |             |
-| `placeholder` | placeholder for text input                   | `string`                |             |
-| `value`       | initial tags                                 | `string[]`              | `[]`        |
-| `onChange`    | onChange callback (added/removed)            | `string[]`              |             |
-| `onBlur`      | input `onBlur` callback                      | `event`                 |             |
-| `seprators`   | when to add tag (i.e. `Space`, `,`, `Enter`) | `string[]`              | `["Enter"]` |
-| `onExisting`  | if tag is already added then callback        | `(tag: string) => void` |             |
-| `onRemoved`   | on tag removed callback                      | `(tag: string) => void` |             |
+| Prop          | Description                            | Type                    | Default     |
+| ------------- | -------------------------------------- | ----------------------- | ----------- |
+| `name`        | value for name of input                | `string`                |             |
+| `placeholder` | placeholder for text input             | `string`                |             |
+| `value`       | initial tags                           | `string[]`              | `[]`        |
+| `onChange`    | onChange callback (added/removed)      | `string[]`              |             |
+| `onBlur`      | input `onBlur` callback                | `event`                 |             |
+| `seprators`   | when to add tag (i.e. `Space`,`Enter`) | `string[]`              | `["Enter"]` |
+| `onExisting`  | if tag is already added then callback  | `(tag: string) => void` |             |
+| `onRemoved`   | on tag removed callback                | `(tag: string) => void` |             |
 
 ## 💅 Themeing
 
