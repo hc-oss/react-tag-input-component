@@ -1,7 +1,7 @@
 {
   "name": "react-tag-input-component",
   "description": "lightweight component for tag(s) input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Harsh Zalavadiya",
   "module": "dist/react-tag-input-component.esm.js",
