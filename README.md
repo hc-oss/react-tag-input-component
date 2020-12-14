@@ -60,7 +60,7 @@ export default Example;
 | `value`       | initial tags                          | `string[]`              | `[]`        |
 | `onChange`    | onChange callback (added/removed)     | `string[]`              |             |
 | `onBlur`      | input `onBlur` callback               | `event`                 |             |
-| `seprators`   | when to add tag (i.e. `Space`, `,`)   | `string[]`              | `["Enter"]` |
+| `seprators`   | when to add tag (i.e. `Space`, `,`, `Enter`)   | `string[]`              | `["Enter"]` |
 | `onExisting`  | if tag is already added then callback | `(tag: string) => void` |             |
 | `onRemoved`   | on tag removed callback               | `(tag: string) => void` |             |
 
