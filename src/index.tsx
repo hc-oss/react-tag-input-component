@@ -90,6 +90,7 @@ export const TagsInput = ({
       }
       setTags([...tags, text]);
       e.target.value = "";
+      e.preventDefault();
     }
   };
 
