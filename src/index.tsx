@@ -110,7 +110,7 @@ export const TagsInput = ({
         type="text"
         name={name}
         placeholder={placeHolder}
-        onKeyUp={handleOnKeyUp}
+        onKeyDown={handleOnKeyUp}
         onBlur={onBlur}
       />
     </div>
