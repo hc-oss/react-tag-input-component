@@ -8,6 +8,7 @@ export default {
 
 export const Default = () => {
   const [selected, setSelected] = useState(["papaya"]);
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div>
@@ -18,7 +19,10 @@ export const Default = () => {
         onChange={setSelected}
         name="fruits"
         placeHolder="enter fruits"
+        disabled={disabled}
       />
+      <br />
+      <button onClick={() => setDisabled(!disabled)}>Change to Disable</button>
     </div>
   );
 };

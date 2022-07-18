@@ -5,6 +5,7 @@ import cc from "./classnames";
 interface TagProps {
   text: string;
   remove: any;
+  disabled?: boolean;
 }
 
 const tagStyles = css({
@@ -14,6 +15,7 @@ const tagStyles = css({
   display: "inline-flex",
   justifyContent: "center",
   paddingLeft: "var(--rti-s)",
+  padding: "var(--rti-tag-padding)",
 
   button: {
     background: "none",
@@ -29,7 +31,7 @@ const tagStyles = css({
   },
 });
 
-export default function Tag({ text, remove }: TagProps) {
+export default function Tag({ text, remove, disabled = false }: TagProps) {
   const handleOnRemove = e => {
     e.stopPropagation();
     remove(text);
@@ -38,13 +40,15 @@ export default function Tag({ text, remove }: TagProps) {
   return (
     <span className={cc("rti--tag", tagStyles)}>
       <span>{text}</span>
-      <button
-        type="button"
-        onClick={handleOnRemove}
-        aria-label={`remove ${text}`}
-      >
-        &#10005;
-      </button>
+      {!disabled && (
+        <button
+          type="button"
+          onClick={handleOnRemove}
+          aria-label={`remove ${text}`}
+        >
+          &#10005;
+        </button>
+      )}
     </span>
   );
 }
