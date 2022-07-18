@@ -14,7 +14,6 @@ const tagStyles = css({
   borderRadius: "var(--rti-radius)",
   display: "inline-flex",
   justifyContent: "center",
-  paddingLeft: "var(--rti-s)",
   padding: "var(--rti-tag-padding)",
 
   button: {
