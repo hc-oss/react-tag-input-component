@@ -21,8 +21,15 @@ export const Default = () => {
         placeHolder="enter fruits"
         disabled={disabled}
       />
-      <br />
-      <button onClick={() => setDisabled(!disabled)}>Change to Disable</button>
+      <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
+        <button
+          onClick={() => setDisabled(!disabled)}
+          style={{ marginRight: "2rem" }}
+        >
+          Change to Disable
+        </button>
+        <pre>Disable: {JSON.stringify(disabled)}</pre>
+      </div>
     </div>
   );
 };
