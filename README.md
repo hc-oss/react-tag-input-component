@@ -24,7 +24,9 @@ yarn add react-tag-input-component # yarn
 
 ## 📦 Example
 
-![Example](preview.gif)
+![Example](https://user-images.githubusercontent.com/5774849/179722762-4d7feef6-52af-4662-ba97-129191fb4f26.gif)
+
+[![Edit react-tag-input-component](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-tag-input-component-rgf97?fontsize=14&hidenavigation=1&theme=dark)
 
 ```tsx
 import React, { useState } from "react";

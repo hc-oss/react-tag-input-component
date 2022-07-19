@@ -6,8 +6,9 @@ export default {
   title: "Tags Input",
 };
 
-export const Default = () => {
+export const Page = () => {
   const [selected, setSelected] = useState(["papaya"]);
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <div>
@@ -18,7 +19,17 @@ export const Default = () => {
         onChange={setSelected}
         name="fruits"
         placeHolder="enter fruits"
+        disabled={disabled}
       />
+      <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
+        <button
+          onClick={() => setDisabled(!disabled)}
+          style={{ marginRight: "2rem" }}
+        >
+          Toggle Disable
+        </button>
+        <pre>Disable: {JSON.stringify(disabled)}</pre>
+      </div>
     </div>
   );
 };
