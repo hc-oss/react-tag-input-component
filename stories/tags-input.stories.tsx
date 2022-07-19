@@ -6,7 +6,7 @@ export default {
   title: "Tags Input",
 };
 
-export const Default = () => {
+export const Page = () => {
   const [selected, setSelected] = useState(["papaya"]);
   const [disabled, setDisabled] = useState(false);
 
@@ -26,7 +26,7 @@ export const Default = () => {
           onClick={() => setDisabled(!disabled)}
           style={{ marginRight: "2rem" }}
         >
-          Change to Disable
+          Toggle Disable
         </button>
         <pre>Disable: {JSON.stringify(disabled)}</pre>
       </div>

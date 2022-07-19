@@ -30,7 +30,7 @@ const tagStyles = css({
   },
 });
 
-export default function Tag({ text, remove, disabled = false }: TagProps) {
+export default function Tag({ text, remove, disabled }: TagProps) {
   const handleOnRemove = e => {
     e.stopPropagation();
     remove(text);
