@@ -1,9 +1,10 @@
 {
   "name": "react-tag-input-component",
   "description": "lightweight component for tag(s) input",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "author": "Harsh Zalavadiya",
+  "repository": "https://github.com/hc-oss/react-tag-input-component",
   "module": "dist/react-tag-input-component.esm.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
