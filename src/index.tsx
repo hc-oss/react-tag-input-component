@@ -13,6 +13,7 @@ export interface TagsInputProps {
   seprators?: string[];
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
+  disabled?: boolean;
 }
 
 // initialize goober once
@@ -26,6 +27,7 @@ const RTIContainer = css({
   "--rtiS": "0.5rem",
   "--rtiTag": "#edf2f7",
   "--rtiTagRemove": "#e53e3e",
+  "--rtiTagPadding": "0.15rem 0.25rem",
 
   "*": {
     boxSizing: "border-box",
@@ -67,6 +69,7 @@ export const TagsInput = ({
   seprators,
   onExisting,
   onRemoved,
+  disabled = false,
 }: TagsInputProps) => {
   const [tags, setTags] = useState(value || []);
 
@@ -102,7 +105,7 @@ export const TagsInput = ({
   return (
     <div aria-labelledby={name} className={cc("rti--container", RTIContainer)}>
       {tags.map(tag => (
-        <Tag key={tag} text={tag} remove={onTagRemove} />
+        <Tag key={tag} text={tag} remove={onTagRemove} disabled={disabled} />
       ))}
 
       <input
@@ -112,6 +115,7 @@ export const TagsInput = ({
         placeholder={placeHolder}
         onKeyDown={handleOnKeyUp}
         onBlur={onBlur}
+        disabled={disabled}
       />
     </div>
   );
