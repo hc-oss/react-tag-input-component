@@ -83,7 +83,15 @@ export const TagsInput = ({
     const text = e.target.value;
 
     if (e.key === "Backspace" && tags.length && !text) {
-      setTags(tags.slice(0, -1));
+      const tagsCopy = [...tags];
+      const poppedTag = tags.pop();
+      setTags(tagsCopy.slice(0, -1));
+
+      /** TODO: explanation: added an space to keep the text to put
+       * into the input and not remove the last letter.
+       * I am looking for better ways to do this, make it more elegant.
+       * */
+      e.target.value = `${poppedTag} `;
     }
 
     if (text && (seprators || defaultSeprators).includes(e.key)) {
