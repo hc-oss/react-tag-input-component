@@ -13,7 +13,9 @@ export interface TagsInputProps {
   seprators?: string[];
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
+  onExceeded?: () => void;
   disabled?: boolean;
+  limit?: number;
 }
 
 // initialize goober once
@@ -69,6 +71,8 @@ export const TagsInput = ({
   seprators,
   onExisting,
   onRemoved,
+  onExceeded,
+  limit,
   disabled,
 }: TagsInputProps) => {
   const [tags, setTags] = useState(value || []);
@@ -90,6 +94,11 @@ export const TagsInput = ({
       if (tags.includes(text)) {
         onExisting && onExisting(text);
         return;
+      }
+      if (limit && tags.length === limit) {
+        onExceeded && onExceeded();
+        e.target.value = "";
+        e.preventDefault();
       }
       setTags([...tags, text]);
       e.target.value = "";
