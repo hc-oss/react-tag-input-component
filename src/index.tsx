@@ -14,6 +14,7 @@ export interface TagsInputProps {
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
   disabled?: boolean;
+  keepWordsOnBackspace?: boolean;
 }
 
 // initialize goober once
@@ -70,6 +71,7 @@ export const TagsInput = ({
   onExisting,
   onRemoved,
   disabled,
+  keepWordsOnBackspace = false,
 }: TagsInputProps) => {
   const [tags, setTags] = useState(value || []);
 
@@ -83,15 +85,8 @@ export const TagsInput = ({
     const text = e.target.value;
 
     if (e.key === "Backspace" && tags.length && !text) {
-      const tagsCopy = [...tags];
-      const poppedTag = tags.pop();
-      setTags(tagsCopy.slice(0, -1));
-
-      /** TODO: explanation: added an space to keep the text to put
-       * into the input and not remove the last letter.
-       * I am looking for better ways to do this, make it more elegant.
-       * */
-      e.target.value = `${poppedTag} `;
+      e.target.value = keepWordsOnBackspace ? `${tags.at(-1)} ` : "";
+      setTags([...tags.slice(0, -1)]);
     }
 
     if (text && (seprators || defaultSeprators).includes(e.key)) {
