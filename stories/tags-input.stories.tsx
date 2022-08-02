@@ -10,6 +10,14 @@ export const Page = () => {
   const [selected, setSelected] = useState(["papaya"]);
   const [disabled, setDisabled] = useState(false);
 
+  const beforeAddValidate = (text) => {
+    if(text.length < 3) {
+      alert("too short!")
+      return false;
+    }
+    return true;
+  }
+
   return (
     <div>
       <h1>Add Fruits</h1>
@@ -20,6 +28,7 @@ export const Page = () => {
         name="fruits"
         placeHolder="enter fruits"
         disabled={disabled}
+        beforeAddValidate={beforeAddValidate}
       />
       <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
         <button
