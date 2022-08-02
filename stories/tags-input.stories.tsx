@@ -11,6 +11,14 @@ export const Page = () => {
   const [disabled, setDisabled] = useState(false);
   const [keepWordsOnBackspace, setKeepWordsOnBackspace] = useState(false);
 
+  const beforeAddValidate = (text) => {
+    if(text.length < 3) {
+      alert("too short!")
+      return false;
+    }
+    return true;
+  }
+
   return (
     <div style={{ marginBottom: "32px" }}>
       <h1>Add Fruits</h1>
@@ -22,6 +30,7 @@ export const Page = () => {
         placeHolder="enter fruits"
         disabled={disabled}
         keepWordsOnBackspace={keepWordsOnBackspace}
+        beforeAddValidate={beforeAddValidate}
       />
       <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
         <button

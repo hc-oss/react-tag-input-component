@@ -15,6 +15,7 @@ export interface TagsInputProps {
   onRemoved?: (tag: string) => void;
   disabled?: boolean;
   keepWordsOnBackspace?: boolean;
+  beforeAddValidate?: (tag: string, existingTags: string[]) => boolean;
 }
 
 // initialize goober once
@@ -72,6 +73,7 @@ export const TagsInput = ({
   onRemoved,
   disabled,
   keepWordsOnBackspace = false,
+  beforeAddValidate,
 }: TagsInputProps) => {
   const [tags, setTags] = useState(value || []);
 
@@ -90,6 +92,8 @@ export const TagsInput = ({
     }
 
     if (text && (seprators || defaultSeprators).includes(e.key)) {
+      if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
+
       if (tags.includes(text)) {
         onExisting && onExisting(text);
         return;
