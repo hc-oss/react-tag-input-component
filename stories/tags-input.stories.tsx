@@ -9,15 +9,15 @@ export default {
 export const Page = () => {
   const [selected, setSelected] = useState(["papaya"]);
   const [disabled, setDisabled] = useState(false);
-  const [keepWordsOnBackspace, setKeepWordsOnBackspace] = useState(false);
+  const [isEditOnRemove, setisEditOnRemove] = useState(false);
 
-  const beforeAddValidate = (text) => {
-    if(text.length < 3) {
-      alert("too short!")
+  const beforeAddValidate = text => {
+    if (text.length < 3) {
+      alert("too short!");
       return false;
     }
     return true;
-  }
+  };
 
   return (
     <div style={{ marginBottom: "32px" }}>
@@ -29,7 +29,7 @@ export const Page = () => {
         name="fruits"
         placeHolder="enter fruits"
         disabled={disabled}
-        keepWordsOnBackspace={keepWordsOnBackspace}
+        isEditOnRemove={isEditOnRemove}
         beforeAddValidate={beforeAddValidate}
       />
       <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
@@ -43,14 +43,12 @@ export const Page = () => {
       </div>
       <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
         <button
-          onClick={() => setKeepWordsOnBackspace(!keepWordsOnBackspace)}
+          onClick={() => setisEditOnRemove(!isEditOnRemove)}
           style={{ marginRight: "2rem" }}
         >
           Toggle Keep Words on Backspace
         </button>
-        <pre>
-          Keep Words on Backspace: {JSON.stringify(keepWordsOnBackspace)}
-        </pre>
+        <pre>Keep Words on Backspace: {JSON.stringify(isEditOnRemove)}</pre>
       </div>
     </div>
   );
