@@ -14,6 +14,7 @@ export interface TagsInputProps {
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
   disabled?: boolean;
+  isEditOnRemove?: boolean;
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean;
 }
 
@@ -71,9 +72,10 @@ export const TagsInput = ({
   onExisting,
   onRemoved,
   disabled,
+  isEditOnRemove,
   beforeAddValidate,
 }: TagsInputProps) => {
-  const [tags, setTags] = useState(value || []);
+  const [tags, setTags] = useState<any>(value || []);
 
   useEffect(() => {
     onChange && onChange(tags);
@@ -85,7 +87,8 @@ export const TagsInput = ({
     const text = e.target.value;
 
     if (e.key === "Backspace" && tags.length && !text) {
-      setTags(tags.slice(0, -1));
+      e.target.value = isEditOnRemove ? `${tags.at(-1)} ` : "";
+      setTags([...tags.slice(0, -1)]);
     }
 
     if (text && (seprators || defaultSeprators).includes(e.key)) {
