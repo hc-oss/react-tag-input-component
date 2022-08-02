@@ -55,16 +55,17 @@ export default Example;
 
 ## 👀 Props
 
-| Prop          | Description                            | Type                    | Default     |
-| ------------- | -------------------------------------- | ----------------------- | ----------- |
-| `name`        | value for name of input                | `string`                |             |
-| `placeholder` | placeholder for text input             | `string`                |             |
-| `value`       | initial tags                           | `string[]`              | `[]`        |
-| `onChange`    | onChange callback (added/removed)      | `string[]`              |             |
-| `onBlur`      | input `onBlur` callback                | `event`                 |             |
-| `seprators`   | when to add tag (i.e. `Space`,`Enter`) | `string[]`              | `["Enter"]` |
-| `onExisting`  | if tag is already added then callback  | `(tag: string) => void` |             |
-| `onRemoved`   | on tag removed callback                | `(tag: string) => void` |             |
+| Prop                | Description                            | Type                                               | Default     |
+| ------------------- | -------------------------------------- | -------------------------------------------------- | ----------- |
+| `name`              | value for name of input                | `string`                                           |             |
+| `placeholder`       | placeholder for text input             | `string`                                           |             |
+| `value`             | initial tags                           | `string[]`                                         | `[]`        |
+| `onChange`          | onChange callback (added/removed)      | `string[]`                                         |             |
+| `onBlur`            | input `onBlur` callback                | `event`                                            |             |
+| `seprators`         | when to add tag (i.e. `Space`,`Enter`) | `string[]`                                         | `["Enter"]` |
+| `onExisting`        | if tag is already added then callback  | `(tag: string) => void`                            |             |
+| `onRemoved`         | on tag removed callback                | `(tag: string) => void`                            |             |
+| `beforeAddValidate` | Custom validation before adding tag    | `(tag: string, existingTags: string[]) => boolean` |             |
 
 ## 💅 Themeing
 
