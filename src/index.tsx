@@ -14,6 +14,7 @@ export interface TagsInputProps {
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
   disabled?: boolean;
+  keepWordsOnBackspace?: boolean;
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean;
 }
 
@@ -71,6 +72,7 @@ export const TagsInput = ({
   onExisting,
   onRemoved,
   disabled,
+  keepWordsOnBackspace = false,
   beforeAddValidate,
 }: TagsInputProps) => {
   const [tags, setTags] = useState(value || []);
@@ -85,7 +87,8 @@ export const TagsInput = ({
     const text = e.target.value;
 
     if (e.key === "Backspace" && tags.length && !text) {
-      setTags(tags.slice(0, -1));
+      e.target.value = keepWordsOnBackspace ? `${tags.at(-1)} ` : "";
+      setTags([...tags.slice(0, -1)]);
     }
 
     if (text && (seprators || defaultSeprators).includes(e.key)) {
