@@ -17,8 +17,10 @@ export interface TagsInputProps {
   isEditOnRemove?: boolean;
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  className?: string;
-  tagClassName?: string;
+  classNames?: {
+    input?: string;
+    tag?: string;
+  };
 }
 
 // initialize goober once
@@ -78,8 +80,7 @@ export const TagsInput = ({
   isEditOnRemove,
   beforeAddValidate,
   onKeyUp,
-  className,
-  tagClassName,
+  classNames,
 }: TagsInputProps) => {
   const [tags, setTags] = useState<any>(value || []);
 
@@ -118,11 +119,11 @@ export const TagsInput = ({
   return (
     <div aria-labelledby={name} className={cc("rti--container", RTIContainer)}>
       {tags.map(tag => (
-        <Tag key={tag} className={tagClassName} text={tag} remove={onTagRemove} disabled={disabled} />
+        <Tag key={tag} className={classNames?.tag} text={tag} remove={onTagRemove} disabled={disabled} />
       ))}
 
       <input
-        className={cc("rti--input", RTIInput, className || "")}
+        className={cc("rti--input", RTIInput, classNames?.input || "")}
         type="text"
         name={name}
         placeholder={placeHolder}
