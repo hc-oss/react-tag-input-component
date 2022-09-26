@@ -6,6 +6,7 @@ interface TagProps {
   text: string;
   remove: any;
   disabled?: boolean;
+  className?: string;
 }
 
 const tagStyles = css({
@@ -30,14 +31,14 @@ const tagStyles = css({
   },
 });
 
-export default function Tag({ text, remove, disabled }: TagProps) {
+export default function Tag({ text, remove, disabled, className }: TagProps) {
   const handleOnRemove = e => {
     e.stopPropagation();
     remove(text);
   };
 
   return (
-    <span className={cc("rti--tag", tagStyles)}>
+    <span className={cc("rti--tag", tagStyles, className)}>
       <span>{text}</span>
       {!disabled && (
         <button

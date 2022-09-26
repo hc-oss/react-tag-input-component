@@ -61,6 +61,8 @@ export default Example;
 | `placeholder`       | placeholder for text input                                                      | `string`                                           |             |
 | `value`             | initial tags                                                                    | `string[]`                                         | `[]`        |
 | `onChange`          | onChange callback (added/removed)                                               | `string[]`                                         |             |
+| `classNames`        | className for styling input and tags (i.e {tag:'tag-cls', input: 'input-cls'})  | `object[tag, input]`                               |             |
+| `onKeyUp`           | input `onKeyUp` callback                                                        | `event`                                            |             |
 | `onBlur`            | input `onBlur` callback                                                         | `event`                                            |             |
 | `seprators`         | when to add tag (i.e. `Space`,`Enter`)                                          | `string[]`                                         | `["Enter"]` |
 | `onExisting`        | if tag is already added then callback                                           | `(tag: string) => void`                            |             |
