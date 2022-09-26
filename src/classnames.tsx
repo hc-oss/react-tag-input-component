@@ -6,5 +6,5 @@
  * @returns {string}
  */
 export default function cc(...obj: (string | number)[]): string {
-  return obj.join(" ");
+  return obj.filter(c => c).join(" ");
 }
