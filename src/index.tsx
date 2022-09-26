@@ -123,7 +123,7 @@ export const TagsInput = ({
       ))}
 
       <input
-        className={cc("rti--input", RTIInput, classNames?.input || "")}
+        className={cc("rti--input", RTIInput, classNames?.input)}
         type="text"
         name={name}
         placeholder={placeHolder}

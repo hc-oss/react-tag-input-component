@@ -38,7 +38,7 @@ export default function Tag({ text, remove, disabled, className }: TagProps) {
   };
 
   return (
-    <span className={cc("rti--tag", tagStyles, className || '')}>
+    <span className={cc("rti--tag", tagStyles, className)}>
       <span>{text}</span>
       {!disabled && (
         <button
