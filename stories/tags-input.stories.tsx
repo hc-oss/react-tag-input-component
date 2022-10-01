@@ -32,7 +32,7 @@ export const Page = () => {
         isEditOnRemove={isEditOnRemove}
         beforeAddValidate={beforeAddValidate}
       />
-      <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
+      <div style={{ marginTop: "2rem" }}>
         <button
           onClick={() => setDisabled(!disabled)}
           style={{ marginRight: "2rem" }}
@@ -41,7 +41,7 @@ export const Page = () => {
         </button>
         <pre>Disable: {JSON.stringify(disabled)}</pre>
       </div>
-      <div style={{ margin: "2rem 0", display: "flex", flexFlow: "row" }}>
+      <div>
         <button
           onClick={() => setisEditOnRemove(!isEditOnRemove)}
           style={{ marginRight: "2rem" }}
@@ -49,6 +49,11 @@ export const Page = () => {
           Toggle Keep Words on Backspace
         </button>
         <pre>Keep Words on Backspace: {JSON.stringify(isEditOnRemove)}</pre>
+      </div>
+      <div>
+        <button onClick={() => setSelected(["tangerine"])}>
+          override value
+        </button>
       </div>
     </div>
   );

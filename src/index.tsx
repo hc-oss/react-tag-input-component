@@ -88,6 +88,12 @@ export const TagsInput = ({
     onChange && onChange(tags);
   }, [tags]);
 
+  useEffect(() => {
+    if (JSON.stringify(value) !== JSON.stringify(tags)) {
+      setTags(value)
+    }
+  }, [value])
+
   const handleOnKeyUp = e => {
     e.stopPropagation();
 
