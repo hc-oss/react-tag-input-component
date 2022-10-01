@@ -11,6 +11,7 @@ export interface TagsInputProps {
   onChange?: (tags: string[]) => void;
   onBlur?: any;
   seprators?: string[];
+  disableBackspaceRemove?: boolean;
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
   disabled?: boolean;
@@ -74,6 +75,7 @@ export const TagsInput = ({
   onChange,
   onBlur,
   seprators,
+  disableBackspaceRemove,
   onExisting,
   onRemoved,
   disabled,
@@ -90,16 +92,21 @@ export const TagsInput = ({
 
   useEffect(() => {
     if (JSON.stringify(value) !== JSON.stringify(tags)) {
-      setTags(value)
+      setTags(value);
     }
-  }, [value])
+  }, [value]);
 
   const handleOnKeyUp = e => {
     e.stopPropagation();
 
     const text = e.target.value;
 
-    if (e.key === "Backspace" && tags.length && !text) {
+    if (
+      !text &&
+      !disableBackspaceRemove &&
+      tags.length &&
+      e.key === "Backspace"
+    ) {
       e.target.value = isEditOnRemove ? `${tags.at(-1)} ` : "";
       setTags([...tags.slice(0, -1)]);
     }
@@ -125,7 +132,13 @@ export const TagsInput = ({
   return (
     <div aria-labelledby={name} className={cc("rti--container", RTIContainer)}>
       {tags.map(tag => (
-        <Tag key={tag} className={classNames?.tag} text={tag} remove={onTagRemove} disabled={disabled} />
+        <Tag
+          key={tag}
+          className={classNames?.tag}
+          text={tag}
+          remove={onTagRemove}
+          disabled={disabled}
+        />
       ))}
 
       <input

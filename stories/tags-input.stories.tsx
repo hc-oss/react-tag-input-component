@@ -29,6 +29,7 @@ export const Page = () => {
         name="fruits"
         placeHolder="enter fruits"
         disabled={disabled}
+        disableBackspaceRemove={true}
         isEditOnRemove={isEditOnRemove}
         beforeAddValidate={beforeAddValidate}
       />

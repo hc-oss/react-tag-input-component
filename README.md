@@ -55,20 +55,21 @@ export default Example;
 
 ## 👀 Props
 
-| Prop                | Description                                                                     | Type                                               | Default     |
-| ------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- | ----------- |
-| `name`              | value for name of input                                                         | `string`                                           |             |
-| `placeholder`       | placeholder for text input                                                      | `string`                                           |             |
-| `value`             | initial tags                                                                    | `string[]`                                         | `[]`        |
-| `onChange`          | onChange callback (added/removed)                                               | `string[]`                                         |             |
-| `classNames`        | className for styling input and tags (i.e {tag:'tag-cls', input: 'input-cls'})  | `object[tag, input]`                               |             |
-| `onKeyUp`           | input `onKeyUp` callback                                                        | `event`                                            |             |
-| `onBlur`            | input `onBlur` callback                                                         | `event`                                            |             |
-| `seprators`         | when to add tag (i.e. `Space`,`Enter`)                                          | `string[]`                                         | `["Enter"]` |
-| `onExisting`        | if tag is already added then callback                                           | `(tag: string) => void`                            |             |
-| `onRemoved`         | on tag removed callback                                                         | `(tag: string) => void`                            |             |
-| `beforeAddValidate` | Custom validation before adding tag                                             | `(tag: string, existingTags: string[]) => boolean` |             |
-| `isEditOnRemove`    | Remove the tag but keep the word in the input to edit it on using Backscape Key | `boolean`                                          | `false`     |
+| Prop                | Description                                                                     | Type                                               | Default         |
+| ------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- | --------------- |
+| `name`              | value for name of input                                                         | `string`                                           |                 |
+| `placeholder`       | placeholder for text input                                                      | `string`                                           |                 |
+| `value`             | initial tags                                                                    | `string[]`                                         | `[]`            |
+| `onChange`          | onChange callback (added/removed)                                               | `string[]`                                         |                 |
+| `classNames`        | className for styling input and tags (i.e {tag:'tag-cls', input: 'input-cls'})  | `object[tag, input]`                               |                 |
+| `onKeyUp`           | input `onKeyUp` callback                                                        | `event`                                            |                 |
+| `onBlur`            | input `onBlur` callback                                                         | `event`                                            |                 |
+| `seprators`         | when to add tag (i.e. `Space`,`Enter`)                                          | `string[]`                                         | `["Enter"]`     |
+| `removers`          | Remove last tag if textbox empty and `Backspace` is pressed                     | `string[]`                                         | `["Backspace"]` |
+| `onExisting`        | if tag is already added then callback                                           | `(tag: string) => void`                            |                 |
+| `onRemoved`         | on tag removed callback                                                         | `(tag: string) => void`                            |                 |
+| `beforeAddValidate` | Custom validation before adding tag                                             | `(tag: string, existingTags: string[]) => boolean` |                 |
+| `isEditOnRemove`    | Remove the tag but keep the word in the input to edit it on using Backscape Key | `boolean`                                          | `false`         |
 
 ## 💅 Themeing
 
