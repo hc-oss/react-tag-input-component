@@ -1,5 +1,4 @@
 import React from "react";
-import { css } from "goober";
 import cc from "./classnames";
 
 interface TagProps {
@@ -9,28 +8,6 @@ interface TagProps {
   className?: string;
 }
 
-const tagStyles = css({
-  alignItems: "center",
-  background: "var(--rti-tag)",
-  borderRadius: "var(--rti-radius)",
-  display: "inline-flex",
-  justifyContent: "center",
-  padding: "var(--rti-tag-padding)",
-
-  button: {
-    background: "none",
-    border: 0,
-    borderRadius: "50%",
-    cursor: "pointer",
-    lineHeight: "inherit",
-    padding: "0 var(--rti-s)",
-
-    "&:hover": {
-      color: "var(--rti-tag-remove)",
-    },
-  },
-});
-
 export default function Tag({ text, remove, disabled, className }: TagProps) {
   const handleOnRemove = e => {
     e.stopPropagation();
@@ -38,7 +15,7 @@ export default function Tag({ text, remove, disabled, className }: TagProps) {
   };
 
   return (
-    <span className={cc("rti--tag", tagStyles, className)}>
+    <span className={cc("rti--tag", className)}>
       <span>{text}</span>
       {!disabled && (
         <button
