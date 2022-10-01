@@ -1,5 +1,6 @@
 import { css, setup } from "goober";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useDidUpdateEffect } from "./use-did-update-effect";
 
 import cc from "./classnames";
 import Tag from "./tag";
@@ -86,11 +87,11 @@ export const TagsInput = ({
 }: TagsInputProps) => {
   const [tags, setTags] = useState<any>(value || []);
 
-  useEffect(() => {
+  useDidUpdateEffect(() => {
     onChange && onChange(tags);
   }, [tags]);
 
-  useEffect(() => {
+  useDidUpdateEffect(() => {
     if (JSON.stringify(value) !== JSON.stringify(tags)) {
       setTags(value);
     }
