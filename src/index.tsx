@@ -12,7 +12,7 @@ export interface TagsInputProps {
   value?: string[];
   onChange?: (tags: string[]) => void;
   onBlur?: any;
-  seprators?: string[];
+  separators?: string[];
   disableBackspaceRemove?: boolean;
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
@@ -26,7 +26,7 @@ export interface TagsInputProps {
   };
 }
 
-const defaultSeprators = ["Enter"];
+const defaultSeparators = ["Enter"];
 
 export const TagsInput = ({
   name,
@@ -34,7 +34,7 @@ export const TagsInput = ({
   value,
   onChange,
   onBlur,
-  seprators,
+  separators,
   disableBackspaceRemove,
   onExisting,
   onRemoved,
@@ -71,7 +71,7 @@ export const TagsInput = ({
       setTags([...tags.slice(0, -1)]);
     }
 
-    if (text && (seprators || defaultSeprators).includes(e.key)) {
+    if (text && (separators || defaultSeparators).includes(e.key)) {
       if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
 
       if (tags.includes(text)) {
