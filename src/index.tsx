@@ -72,6 +72,7 @@ export const TagsInput = ({
     }
 
     if (text && (separators || defaultSeparators).includes(e.key)) {
+      e.preventDefault();
       if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
 
       if (tags.includes(text)) {
@@ -80,7 +81,6 @@ export const TagsInput = ({
       }
       setTags([...tags, text]);
       e.target.value = "";
-      e.preventDefault();
     }
   };
 
