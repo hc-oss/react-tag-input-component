@@ -23,7 +23,7 @@ export interface TagsInputProps {
   classNames?: {
     input?: string;
     tag?: string;
-    tagInput?:string
+    tagInput?: string
   };
   multiValueTags?: boolean;
   numberOfValuesPerTag?: number;
@@ -92,14 +92,11 @@ export const TagsInput = ({
         !openTag && setTags([...tags, [text]]);
 
         if (openTag) {
-           let lastTag = JSON.parse(JSON.stringify(tags[tags.length - 1]));
-          console.log("Lasttag",lastTag)
+          let lastTag = JSON.parse(JSON.stringify(tags[tags.length - 1]));
+          setTags([...tags.slice(0, -1), [...lastTag, text]]);
 
-          setTags([...tags.slice(0, -1), [...lastTag,text]])
-
-          numberOfValuesPerTag && ([...lastTag,text].length == numberOfValuesPerTag) && setOpenTag(false)
-        }
-        else {
+          numberOfValuesPerTag && ([...lastTag, text].length == numberOfValuesPerTag) && setOpenTag(false);
+        } else {
           setOpenTag(true);
 
         }
@@ -116,12 +113,12 @@ export const TagsInput = ({
   const onTagRemove = text => {
     setTags(tags.filter(tag => tag !== text));
     onRemoved && onRemoved(text);
-    setOpenTag(false)
+    setOpenTag(false);
   };
 
   return (
     <div aria-labelledby={name} className="rti--container">
-      {tags.map((tag, index:number) => (
+      {tags.map((tag, index: number) => (
         <Tag
           key={tag}
           className={classNames?.tag}
