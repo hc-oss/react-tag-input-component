@@ -23,28 +23,34 @@ export interface TagsInputProps {
   classNames?: {
     input?: string;
     tag?: string;
+    tagInput?: string
   };
+  multiValueTags?: boolean;
+  numberOfValuesPerTag?: number;
 }
 
 const defaultSeparators = ["Enter"];
 
 export const TagsInput = ({
-  name,
-  placeHolder,
-  value,
-  onChange,
-  onBlur,
-  separators,
-  disableBackspaceRemove,
-  onExisting,
-  onRemoved,
-  disabled,
-  isEditOnRemove,
-  beforeAddValidate,
-  onKeyUp,
-  classNames,
-}: TagsInputProps) => {
+                            name,
+                            placeHolder,
+                            value,
+                            onChange,
+                            onBlur,
+                            separators,
+                            disableBackspaceRemove,
+                            onExisting,
+                            onRemoved,
+                            disabled,
+                            isEditOnRemove,
+                            beforeAddValidate,
+                            onKeyUp,
+                            classNames,
+                            multiValueTags,
+                            numberOfValuesPerTag,
+                          }: TagsInputProps) => {
   const [tags, setTags] = useState<any>(value || []);
+  const [openTag, setOpenTag] = useState(false);
 
   useDidUpdateEffect(() => {
     onChange && onChange(tags);
@@ -55,6 +61,7 @@ export const TagsInput = ({
       setTags(value);
     }
   }, [value]);
+
 
   const handleOnKeyUp = e => {
     e.stopPropagation();
@@ -79,23 +86,46 @@ export const TagsInput = ({
         onExisting && onExisting(text);
         return;
       }
-      setTags([...tags, text]);
-      e.target.value = "";
+
+
+      if (multiValueTags) {
+        !openTag && setTags([...tags, [text]]);
+
+        if (openTag) {
+          let lastTag = JSON.parse(JSON.stringify(tags[tags.length - 1]));
+          setTags([...tags.slice(0, -1), [...lastTag, text]]);
+
+          numberOfValuesPerTag && ([...lastTag, text].length == numberOfValuesPerTag) && setOpenTag(false);
+        } else {
+          setOpenTag(true);
+
+        }
+        e.target.value = "";
+
+
+      } else {
+        setTags([...tags, text]);
+        e.target.value = "";
+      }
     }
   };
 
   const onTagRemove = text => {
     setTags(tags.filter(tag => tag !== text));
     onRemoved && onRemoved(text);
+    setOpenTag(false);
   };
 
   return (
     <div aria-labelledby={name} className="rti--container">
-      {tags.map(tag => (
+      {tags.map((tag, index: number) => (
         <Tag
           key={tag}
           className={classNames?.tag}
+          classNameInput={classNames?.tagInput}
           text={tag}
+          openTag={index == (tags.length - 1) && openTag}
+          handleKeyUp={handleOnKeyUp}
           remove={onTagRemove}
           disabled={disabled}
         />

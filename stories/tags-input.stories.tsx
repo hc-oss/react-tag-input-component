@@ -7,9 +7,12 @@ export default {
 };
 
 export const Page = () => {
-  const [selected, setSelected] = useState(["papaya"]);
+  const [selected, setSelected] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [isEditOnRemove, setisEditOnRemove] = useState(false);
+
+  const [multipleValues,setMultipleValues] = useState(false)
+  const [numberOfValues,setNumberOfValues] = useState(0)
 
   const beforeAddValidate = text => {
     if (text.length < 3) {
@@ -30,6 +33,8 @@ export const Page = () => {
         placeHolder="enter fruits"
         disabled={disabled}
         isEditOnRemove={isEditOnRemove}
+        multiValueTags={multipleValues}
+        numberOfValuesPerTag={numberOfValues}
         beforeAddValidate={beforeAddValidate}
       />
       <div style={{ marginTop: "2rem" }}>
@@ -50,6 +55,25 @@ export const Page = () => {
         </button>
         <pre>Keep Words on Backspace: {JSON.stringify(isEditOnRemove)}</pre>
       </div>
+
+
+      <div>
+        <button
+          onClick={() => setMultipleValues(!multipleValues)}
+          style={{ marginRight: "2rem" }}
+        >
+          Toggle Multiple Values per Tag
+        </button>
+        <pre>Multiple values per tag: {JSON.stringify(multipleValues)}</pre>
+      </div>
+
+      <div>
+
+          <input placeholder={"Enter number of values"} style={{ marginRight: "2rem" }} type={"number"} onChange={(e) => setNumberOfValues(Number(e.target.value))}/>
+
+        <pre>Number of values per tag: {JSON.stringify(numberOfValues)}</pre>
+      </div>
+
       <div>
         <button onClick={() => setSelected(["tangerine"])}>
           override value
