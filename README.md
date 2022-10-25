@@ -64,7 +64,7 @@ export default Example;
 | `classNames`        | className for styling input and tags (i.e {tag:'tag-cls', input: 'input-cls'})  | `object[tag, input]`                               |                 |
 | `onKeyUp`           | input `onKeyUp` callback                                                        | `event`                                            |                 |
 | `onBlur`            | input `onBlur` callback                                                         | `event`                                            |                 |
-| `separators`         | when to add tag (i.e. `Space`,`Enter`)                                          | `string[]`                                         | `["Enter"]`     |
+| `separators`         | when to add tag (i.e. `"Enter"`, `" "`)                                        | `string[]`                                         | `["Enter"]`     |
 | `removers`          | Remove last tag if textbox empty and `Backspace` is pressed                     | `string[]`                                         | `["Backspace"]` |
 | `onExisting`        | if tag is already added then callback                                           | `(tag: string) => void`                            |                 |
 | `onRemoved`         | on tag removed callback                                                         | `(tag: string) => void`                            |                 |
