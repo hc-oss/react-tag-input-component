@@ -19,7 +19,6 @@ export interface TagsInputProps {
   disabled?: boolean;
   isEditOnRemove?: boolean;
   beforeAddValidate?: (tag: string, existingTags: string[]) => boolean;
-  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   classNames?: {
     input?: string;
     tag?: string;
@@ -41,7 +40,6 @@ export const TagsInput = ({
   disabled,
   isEditOnRemove,
   beforeAddValidate,
-  onKeyUp,
   classNames,
 }: TagsInputProps) => {
   const [tags, setTags] = useState<any>(value || []);
@@ -106,10 +104,9 @@ export const TagsInput = ({
         type="text"
         name={name}
         placeholder={placeHolder}
-        onKeyDown={handleOnKeyUp}
+        onKeyUp={handleOnKeyUp}
         onBlur={onBlur}
         disabled={disabled}
-        onKeyUp={onKeyUp}
       />
     </div>
   );
