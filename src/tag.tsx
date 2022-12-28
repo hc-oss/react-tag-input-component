@@ -3,13 +3,13 @@ import cc from "./classnames";
 
 interface TagProps {
   text: string;
-  remove: any;
+  remove: (tag: string) => void;
   disabled?: boolean;
   className?: string;
 }
 
 export default function Tag({ text, remove, disabled, className }: TagProps) {
-  const handleOnRemove = e => {
+  const handleOnRemove: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.stopPropagation();
     remove(text);
   };
