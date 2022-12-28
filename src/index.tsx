@@ -11,7 +11,7 @@ export interface TagsInputProps {
   placeHolder?: string;
   value?: string[];
   onChange?: (tags: string[]) => void;
-  onBlur?: any;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   separators?: string[];
   disableBackspaceRemove?: boolean;
   onExisting?: (tag: string) => void;
@@ -44,22 +44,23 @@ export const TagsInput = ({
   onKeyUp,
   classNames,
 }: TagsInputProps) => {
-  const [tags, setTags] = useState<any>(value || []);
+  const [tags, setTags] = useState<string[]>(value || []);
 
   useDidUpdateEffect(() => {
     onChange && onChange(tags);
   }, [tags]);
 
   useDidUpdateEffect(() => {
-    if (JSON.stringify(value) !== JSON.stringify(tags)) {
+    if (value && JSON.stringify(value) !== JSON.stringify(tags)) {
       setTags(value);
     }
   }, [value]);
 
-  const handleOnKeyUp = e => {
+  const handleOnKeyUp: React.KeyboardEventHandler<HTMLInputElement> = e => {
     e.stopPropagation();
 
-    const text = e.target.value;
+    const target = e.target as HTMLInputElement;
+    const text = target.value;
 
     if (
       !text &&
@@ -67,7 +68,7 @@ export const TagsInput = ({
       tags.length &&
       e.key === "Backspace"
     ) {
-      e.target.value = isEditOnRemove ? `${tags.at(-1)} ` : "";
+      target.value = isEditOnRemove ? `${tags.at(-1)} ` : "";
       setTags([...tags.slice(0, -1)]);
     }
 
@@ -80,11 +81,11 @@ export const TagsInput = ({
         return;
       }
       setTags([...tags, text]);
-      e.target.value = "";
+      target.value = "";
     }
   };
 
-  const onTagRemove = text => {
+  const onTagRemove = (text: string) => {
     setTags(tags.filter(tag => tag !== text));
     onRemoved && onRemoved(text);
   };
