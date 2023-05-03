@@ -73,6 +73,8 @@ export const TagsInput = ({
 
     if (text && (separators || defaultSeparators).includes(e.key)) {
       e.preventDefault();
+      if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) return;
+
       if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
 
       if (tags.includes(text)) {
