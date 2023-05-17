@@ -58,3 +58,48 @@ export const Page = () => {
     </div>
   );
 };
+
+export const Paste = () => {
+  const [selected, setSelected] = useState(["papaya"]);
+  const [disabled, setDisabled] = useState(false);
+  const [isEditOnRemove, setisEditOnRemove] = useState(false);
+
+  return (
+    <div style={{ marginBottom: "32px" }}>
+      <h1>Add Fruits</h1>
+      <pre>{JSON.stringify(selected)}</pre>
+      <TagsInput
+        value={selected}
+        onChange={setSelected}
+        name="fruits"
+        placeHolder="press , or ; to add fruits"
+        disabled={disabled}
+        isEditOnRemove={isEditOnRemove}
+        separators={[',', ';']}
+      />
+      <div style={{ marginTop: "2rem" }}>
+        <button
+          onClick={() => setDisabled(!disabled)}
+          style={{ marginRight: "2rem" }}
+        >
+          Toggle Disable
+        </button>
+        <pre>Disable: {JSON.stringify(disabled)}</pre>
+      </div>
+      <div>
+        <button
+          onClick={() => setisEditOnRemove(!isEditOnRemove)}
+          style={{ marginRight: "2rem" }}
+        >
+          Toggle Keep Words on Backspace
+        </button>
+        <pre>Keep Words on Backspace: {JSON.stringify(isEditOnRemove)}</pre>
+      </div>
+      <div>
+        <button onClick={() => setSelected(["tangerine"])}>
+          override value
+        </button>
+      </div>
+    </div>
+  );
+}

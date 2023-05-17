@@ -84,6 +84,16 @@ export const TagsInput = ({
     }
   };
 
+  const onPaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    const pasteText = event.clipboardData.getData("text");
+    if (pasteText.length < 1) return;
+
+    const pasteTags = splitPaste({ text: pasteText, tags, separators })
+    setTags([...tags, ...pasteTags])
+    event.preventDefault();
+  }
+
+
   const onTagRemove = text => {
     setTags(tags.filter(tag => tag !== text));
     onRemoved && onRemoved(text);
@@ -110,7 +120,32 @@ export const TagsInput = ({
         onBlur={onBlur}
         disabled={disabled}
         onKeyUp={onKeyUp}
+        onPaste={onPaste}
       />
     </div>
   );
 };
+
+type splitPasteParamType = {
+  tags: Array<string>;
+  text: string;
+  separators: Array<string>;
+}
+
+function splitPaste({ tags, text, separators }: splitPasteParamType) {
+  let dirtyTags = separators.reduce((accumulator, separator) => {
+    const splitText = text.split(separator);
+    if (splitText.length > accumulator.length) accumulator = splitText;
+    return accumulator;
+  }, []);
+  const cleanTags = dirtyTags.map(tag => tag.trim());
+
+  const cleanDuplicateTags = cleanTags.reduce((accumulator, tag) => {
+    if (!tags.includes(tag)) {
+      accumulator.push(tag)
+    }
+    return accumulator;
+  }, [])
+
+  return cleanDuplicateTags;
+}
