@@ -23,6 +23,7 @@ export interface TagsInputProps {
   classNames?: {
     input?: string;
     tag?: string;
+    container?: string;
   };
 }
 
@@ -56,7 +57,7 @@ export const TagsInput = ({
     }
   }, [value]);
 
-  const handleOnKeyUp = e => {
+  const handleOnKeyUp = (e) => {
     e.stopPropagation();
 
     const text = e.target.value;
@@ -84,14 +85,17 @@ export const TagsInput = ({
     }
   };
 
-  const onTagRemove = text => {
-    setTags(tags.filter(tag => tag !== text));
+  const onTagRemove = (text) => {
+    setTags(tags.filter((tag) => tag !== text));
     onRemoved && onRemoved(text);
   };
 
   return (
-    <div aria-labelledby={name} className="rti--container">
-      {tags.map(tag => (
+    <div
+      aria-labelledby={name}
+      className={cc("rti--container", classNames?.container)}
+    >
+      {tags.map((tag) => (
         <Tag
           key={tag}
           className={classNames?.tag}
