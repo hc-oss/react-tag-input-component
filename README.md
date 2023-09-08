@@ -65,6 +65,7 @@ export default Example;
 | `onKeyUp`           | input `onKeyUp` callback                                                        | `event`                                            |                 |
 | `onBlur`            | input `onBlur` callback                                                         | `event`                                            |                 |
 | `separators`         | when to add tag (i.e. `"Enter"`, `" "`)                                        | `string[]`                                         | `["Enter"]`     |
+| `separatorsByKeyCode` | when to add tag by keyCode (i.e. `13` for Enter key). When this option is set, `separators` will be ignored.                                      | `number[]`                                         | `[]`     |
 | `removers`          | Remove last tag if textbox empty and `Backspace` is pressed                     | `string[]`                                         | `["Backspace"]` |
 | `onExisting`        | if tag is already added then callback                                           | `(tag: string) => void`                            |                 |
 | `onRemoved`         | on tag removed callback                                                         | `(tag: string) => void`                            |                 |
