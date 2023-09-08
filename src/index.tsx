@@ -13,6 +13,7 @@ export interface TagsInputProps {
   onChange?: (tags: string[]) => void;
   onBlur?: any;
   separators?: string[];
+  separatorsByKeyCode?: number[];
   disableBackspaceRemove?: boolean;
   onExisting?: (tag: string) => void;
   onRemoved?: (tag: string) => void;
@@ -35,6 +36,7 @@ export const TagsInput = ({
   onChange,
   onBlur,
   separators,
+  separatorsByKeyCode,
   disableBackspaceRemove,
   onExisting,
   onRemoved,
@@ -70,17 +72,30 @@ export const TagsInput = ({
       e.target.value = isEditOnRemove ? `${tags.at(-1)} ` : "";
       setTags([...tags.slice(0, -1)]);
     }
+    if (separatorsByKeyCode && separatorsByKeyCode.length) {
+      if (text && (separatorsByKeyCode).includes(e.keyCode)) {
+        e.preventDefault();
+        if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
 
-    if (text && (separators || defaultSeparators).includes(e.key)) {
-      e.preventDefault();
-      if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
-
-      if (tags.includes(text)) {
-        onExisting && onExisting(text);
-        return;
+        if (tags.includes(text)) {
+          onExisting && onExisting(text);
+          return;
+        }
+        setTags([...tags, text]);
+        e.target.value = "";
       }
-      setTags([...tags, text]);
-      e.target.value = "";
+    } else {
+      if (text && (separators || defaultSeparators).includes(e.key)) {
+        e.preventDefault();
+        if (beforeAddValidate && !beforeAddValidate(text, tags)) return;
+
+        if (tags.includes(text)) {
+          onExisting && onExisting(text);
+          return;
+        }
+        setTags([...tags, text]);
+        e.target.value = "";
+      }
     }
   };
 
